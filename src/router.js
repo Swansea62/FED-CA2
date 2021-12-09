@@ -12,6 +12,23 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    ///COLLEGE API///
+    {
+        path: "/courses",
+        name: "course_index",
+        component: () => import("./pages/College/Course.vue")
+    },
+    {
+        path: "/lecturers",
+        name: "lecturer_index",
+        component: () => import("./pages/College/Lecturer.vue")
+    },
+    {
+        path: "/enrolments",
+        name: "enrolment_index",
+        component: () => import("./pages/College/Enrolment.vue")
     }
+    //////////////////
 ]
 });

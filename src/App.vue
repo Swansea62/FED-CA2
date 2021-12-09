@@ -1,27 +1,49 @@
 <template>
   <div>
-    <Navbar :loggedIn="loggedIn" v-on:logout="setLoggedOut" />
+    <Navbar/>
+    <br>
+    <Home/>
+
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue"
+import Home from "@/pages/Home.vue"
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    Home
+  },
+  data() {
+    return {
+      loggedIn: false
+    }
+  },created(){
+    if(localStorage.getItem('token')){
+      this.loggedIn = true
+    }
+    else {
+      this.loggedIn = false
+    }
+  },
+  methods:{
+    setLoggedIn(token){
+      this.loggedIn = true
+      localStorage.setItem('token', token)
+
+    },
+    setLoggedOut(){
+      this.loggedIn= false
+      localStorage.removeItem('token')
+      this.$router.push({name: 'home'})
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
