@@ -42,8 +42,8 @@ export default {
           password: this.form.password
         })
         .then(response => {
-          //console.log(response.data.token)
-          this.emit('login', response.data.token)
+          console.log(response.data.token)
+          this.$emit('login', response.data.token)
         })
         .catch(error => {
           console.log(error)
